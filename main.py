@@ -817,10 +817,15 @@ async def health_check():
     }
 
 if __name__ == "__main__":
+    import os
     import uvicorn
-    print("="*100)
+
+    port = int(os.getenv("PORT", 10000))
+    host = "0.0.0.0"
+
+    print("=" * 100)
     print("🎯 INDIVIDUAL JOB SCRAPER - REAL JOBS ONLY")
-    print("="*100)
+    print("=" * 100)
     print("📡 APIs ACTIVE (Individual Jobs Only):")
     print("  • RapidAPI JSearch - Individual jobs from 50+ platforms")
     print("  • SerpAPI Google Jobs - Individual Google Jobs listings")
@@ -835,8 +840,14 @@ if __name__ == "__main__":
     print("  • Individual job listings with specific titles")
     print("  • Jobs with clear company names")
     print("  • Actual job descriptions")
-    print("="*100)
-    print("📍 Web Interface: http://127.0.0.1:8000")
-    print("📊 API Docs: http://127.0.0.1:8000/docs")
-    print("="*100)
-    uvicorn.run(app, host="127.0.0.1", port=8000, reload=True)
+    print("=" * 100)
+    print(f"🌐 Server Running: http://{host}:{port}")
+    print(f"📊 API Docs: http://{host}:{port}/docs")
+    print("=" * 100)
+
+    uvicorn.run(
+        "main:app",
+        host=host,
+        port=port,
+        reload=False
+    )
