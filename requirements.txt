@@ -5,3 +5,4 @@ pandas
 pydantic
 gunicorn
 beautifulsoup4
+aiohttp
